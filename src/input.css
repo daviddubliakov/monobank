@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-custom-gradient {
+  background-image: linear-gradient(136.56deg, #8a53b6 0%, #cea2d0 97.42%);
+}
+
+.gradient-wrapper {
+  border-radius: 24px;
+  width: 394px;
+  background: linear-gradient(92.12deg, #57b5f9 0%, #da11ba 100%);
+}
+
+.counter-input {
+  font-size: 48px;
+  min-width: 0;
+}
+
+.empty {
+  opacity: 0.4;
+}
+
+.incorrect {
+  opacity: 0.5;
+  color: #b30953;
+}
+
+.hidden-elem {
+  opacity: 0;
+}
+
+.field input:hover + label,
+.field input:focus + label,
+.field input.active + label {
+  font-size: 12px;
+  top: -52px;
+}
+
+.field:focus-within {
+  box-shadow: 0 0 0 2px #000;
+}

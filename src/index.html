@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Безпечний переказ коштів</title>
+    <link href="./output.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//fonts.googleapis.com/css?family=Lato"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="h-screen">
+    <div
+      class="bg-custom-gradient min-h-full min-w-full flex items-center justify-center"
+    >
+      <div class="flex flex-col items-center min-w-[990px] max-w-[990px] mt-16">
+        <section
+          class="flex my-4 min-w-full rounded-3xl min-h-[680px] overflow-hidden bg-white"
+        >
+          <div class="w-1/2 bg-[#f2f4f5]">
+            <img src="./images/logo_short.png" class="mt-[42px] mb-6 mx-auto" />
+            <div class="mb-[20px] mt-[93.5px] mx-auto w-[fit-content]">
+              <div class="relative pb-1">
+                <img src="./images/jar_bg.png" width="215px" />
+                <div
+                  class="bottom-[14px] left-[128px] z-[2] rounded-[36px] absolute bg-[length:100%_100%] w-[56px] h-[56px] bg-[url('https://jar-img.monobank.com.ua/N92.30.0021591888.jpg?ts=2023-07-20T14:33:15.758636825')]"
+                ></div>
+                <div
+                  class="absolute top-[50%] left-[51%] scale-[.97] -translate-x-1/2 -translate-y-1/2"
+                >
+                  <img
+                    src="./images/uah_50.png"
+                    class="max-w-[155px] w-[155px] h-[203px]"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-center">
+              <span class="text-sm font-medium leading-4"
+                >Сергій С. збирає</span
+              >
+            </div>
+            <div class="flex justify-center mt-1">
+              <span class="text-[22px] font-black leading-[normal]"
+                >На поточний RUSORIZ</span
+              >
+            </div>
+            <div class="flex justify-center mt-3 px-[20px]">
+              <span class="text-sm font-medium text-center leading-[140%]">
+                Постійна банка для закупівлі FPV. Наша мета — купувати хоча б
+                100 дронів на день та передавати швидко на фронт!
+              </span>
+            </div>
+            <div class="flex justify-center mt-4">
+              <div class="px-5 py-3 bg-white rounded-2xl">
+                <div class="flex gap-4">
+                  <img src="./icons/collected.svg" alt="Collected" />
+                  <div class="flex flex-col">
+                    <span class="text-sm text-[#808080] leading-[17px]"
+                      >Накопичено</span
+                    >
+                    <span class="font-medium" id="sum-amount-text"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="w-1/2">
+            <div class="flex justify-center mt-[48px] mb-[32px]">
+              <div class="gradient-wrapper">
+                <div class="rounded-[21px] bg-white p-6 m-[3px]">
+                  <div class="flex justify-center gap-[7px] items-center">
+                    <span class="text-sm font-semibold leading-4"
+                      >Сума поповнення</span
+                    >
+                    <img src="./images/money.png" alt="money" width="16px" />
+                  </div>
+                  <div
+                    class="flex justify-center pt-5 leading-[normal] text-[#1b1c21] empty"
+                    id="sum-to-add-wrapper"
+                  >
+                    <div
+                      class="outline-0 text-[48px] font-bold"
+                      inputmode="decimal"
+                      contenteditable="true"
+                      id="sum-to-add"
+                    >
+                      0
+                    </div>
+                    <div class="text-[48px] font-bold">&nbsp;₴</div>
+                  </div>
+                  <div
+                    id="incorrect-sum-message"
+                    class="hidden-elem text-[#808080] text-xs mb-[16px] text-center mt-[-6px]"
+                  >
+                    Сума повинна бути від 10 ₴ до 29 999 ₴
+                  </div>
+                  <div class="flex gap-4">
+                    <div
+                      class="font-medium rounded-2xl flex-1 border border-[#ccc] border-solid h-[42px] flex justify-center items-center text-[#1b1c21] cursor-pointer"
+                      onclick="handleAddToSum(100)"
+                    >
+                      +100&nbsp;₴
+                    </div>
+                    <div
+                      class="font-medium rounded-2xl flex-1 border border-[#ccc] border-solid h-[42px] flex justify-center items-center cursor-pointer"
+                      onclick="handleAddToSum(500)"
+                    >
+                      +500&nbsp;₴
+                    </div>
+                    <div
+                      class="font-medium rounded-2xl flex-1 border border-[#ccc] border-solid h-[42px] flex justify-center items-center cursor-pointer"
+                      onclick="handleAddToSum(1000)"
+                    >
+                      +1&nbsp;000&nbsp;₴
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-center">
+              <form class="flex flex-col w-[340px]">
+                <div
+                  class="field border boder-[#ccc] border-solid rounded-2xl h-[58px] px-4 mb-4"
+                >
+                  <input
+                    class="h-[41px] mt-3 outline-0 w-[100%]"
+                    type="text"
+                    onchange="handleChangeInput(event, 'name')"
+                    id="name"
+                  />
+                  <label
+                    class="[transition:all_0.1s_ease] relative top-[-38px] inline-block opacity-60"
+                    >Ваше ім'я (необов'язково)</label
+                  >
+                  <span class="h-2"></span>
+                </div>
+                <div
+                  class="field border boder-[#ccc] border-solid rounded-2xl h-[58px] px-4 mb-4"
+                >
+                  <input
+                    class="h-[41px] mt-3 outline-0 w-[100%]"
+                    type="text"
+                    onchange="handleChangeInput(event, 'comment')"
+                    id="comment"
+                  />
+                  <label
+                    class="[transition:all_0.1s_ease] relative top-[-38px] inline-block opacity-60"
+                    >Коментар (необов'язково)</label
+                  >
+                  <span class="h-2"></span>
+                </div>
+                <button
+                  class="flex justify-center bg-black rounded-lg py-[11px] w-full mb-4 hover:bg-[#3c4043]"
+                  onclick="{tooglePaySystem(event, 'Mono Pay')}"
+                >
+                  <img src="./icons/mono_pay.svg" alt="monopay" />
+                </button>
+                <button
+                  class="flex justify-center bg-black rounded-lg py-[11px] w-full hover:bg-[#3c4043]"
+                  onclick="{tooglePaySystem(event, 'Google Pay')}"
+                >
+                  <img src="./icons/g_pay.svg" alt="gpay" class="h-[26px]" />
+                </button>
+                <div
+                  class="mt-6 mb-2 border-t-[0.5px] border-solid border-[#ccc]"
+                ></div>
+                <div class="flex justify-center p-2">
+                  <div
+                    class="flex justify-center gap-2 cursor-pointer"
+                    onclick="{tooglePaySystem(event, 'Bank Card')}"
+                  >
+                    <img src="./icons/card.svg" alt="card" />
+                    <span
+                      class="text-[#e85e5b] font-semibold text-sm leading-[24px]"
+                      >Оплатити карткою</span
+                    >
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+        <footer class="flex justify-between items-center min-w-full mb-4">
+          <p class="text-white/80 text-xs font-medium">
+            АТ «УНІВЕРСАЛ БАНК» Ліцензія НБУ №92 від <br />
+            20.01.1994, у держреєстрі банків №226
+          </p>
+          <div class="flex gap-4">
+            <div
+              class="px-4 transition duration-200 ease-in-out bg-white/[.08] mt-2 border border-solid border-white border-opacity-40 rounded-2xl h-10 cursor-pointer hover:bg-white/20"
+              onclick="redirectTo('https://send.monobank.ua/owner.html?sendId=dzBdJ3737')"
+            >
+              <div class="flex items-center justify-center gap-2 h-full">
+                <img
+                  src="./icons/cup.svg"
+                  alt="Cup"
+                  width="16px"
+                  height="16px"
+                />
+                <span class="font-semibold text-white text-sm"
+                  >Провести розіграш</span
+                >
+              </div>
+            </div>
+            <div
+              class="px-4 transition duration-200 ease-in-out bg-white/[.08] mt-2 border border-solid border-white border-opacity-40 rounded-2xl h-10 cursor-pointer hover:bg-white/20"
+              onclick="redirectTo('https://send.monobank.ua/widget/builder.html?longJarId=NZc6STYSe5P47sw3dfvVoRYbfSnV82&sendId=dzBdJ3737')"
+            >
+              <div class="flex items-center justify-center gap-2 h-full">
+                <img src="./icons/gamepad.svg" alt="Cup" />
+                <span class="font-semibold text-white text-sm">
+                  Віджет для стрімів
+                </span>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script src="./index.js"></script>
+  </body>
+</html>
